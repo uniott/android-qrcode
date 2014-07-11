@@ -1,0 +1,10 @@
+<resources>
+
+    <style name="AppTheme"></style>
+
+    <style name="title_right_button">
+        <item name="android:clickable">true</item>
+        <item name="android:scaleType">fitCenter</item>
+    </style>
+
+</resources>
