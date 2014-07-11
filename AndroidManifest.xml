@@ -22,7 +22,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="com.uniott.uni.zxing.CaptureActivity"
+            android:name="com.uniott.zxing.scanner.CaptureActivity"
             android:label="@string/title_activity_scanner" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
