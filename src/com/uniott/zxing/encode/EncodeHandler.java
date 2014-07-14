@@ -9,7 +9,7 @@ import android.view.Display;
 import android.view.WindowManager;
 
 import com.google.zxing.WriterException;
-import com.uniott.zxing.scanner.Intents;
+import com.uniott.zxing.decoding.Intents;
 
 public class EncodeHandler {
 	private static final String TAG = EncodeActivity.class.getSimpleName();

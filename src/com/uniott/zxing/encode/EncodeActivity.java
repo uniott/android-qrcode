@@ -19,7 +19,6 @@ package com.uniott.zxing.encode;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Point;
@@ -32,9 +31,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.zxing.WriterException;
-import com.uniott.uni.zxing.R;
-import com.uniott.zxing.scanner.FinishListener;
-import com.uniott.zxing.scanner.Intents;
+import com.uniott.zxing.R;
+import com.uniott.zxing.decoding.FinishListener;
+import com.uniott.zxing.decoding.Intents;
 
 /**
  * This class encodes data from an Intent into a QR code, and then displays it

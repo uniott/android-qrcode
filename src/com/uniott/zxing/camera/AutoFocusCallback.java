@@ -44,5 +44,4 @@ final class AutoFocusCallback implements Camera.AutoFocusCallback {
 			Log.d(TAG, "Got auto-focus callback, but no handler for it");
 		}
 	}
-
 }

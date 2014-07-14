@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <item name="selected_view" type="id"/>
 
+    <item name="selected_view" type="id"/>
     <item name="auto_focus" type="id"/>
     <item name="decode" type="id"/>
     <item name="decode_failed" type="id"/>
