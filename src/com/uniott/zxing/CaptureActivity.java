@@ -13,6 +13,7 @@ import android.media.MediaPlayer.OnCompletionListener;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Vibrator;
+import android.util.Log;
 import android.view.SurfaceHolder;
 import android.view.SurfaceHolder.Callback;
 import android.view.SurfaceView;
@@ -42,7 +43,7 @@ public class CaptureActivity extends Activity implements Callback {
 	private InactivityTimer inactivityTimer;
 	private MediaPlayer mediaPlayer;
 	private boolean playBeep;
-	private static final float BEEP_VOLUME = 0.10f;
+	private static final float BEEP_VOLUME = 1.0f;
 	private boolean vibrate;
 
 	/** Called when the activity is first created. */
@@ -54,7 +55,7 @@ public class CaptureActivity extends Activity implements Callback {
 
 		CameraManager.init(getApplication());
 		viewfinderView = (ViewfinderView) findViewById(R.id.viewfinder_view);
-		
+
 		hasSurface = false;
 		inactivityTimer = new InactivityTimer(this);
 	}
@@ -114,7 +115,7 @@ public class CaptureActivity extends Activity implements Callback {
 		this.setResult(RESULT_OK, resultIntent);
 
 		Toast.makeText(this, resultString, Toast.LENGTH_SHORT).show();
-
+		Log.e("QRCode", resultString);
 		// finish();
 	}
 

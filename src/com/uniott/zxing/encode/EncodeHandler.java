@@ -2,34 +2,19 @@ package com.uniott.zxing.encode;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Point;
 import android.view.Display;
 import android.view.WindowManager;
 
 import com.google.zxing.WriterException;
-import com.uniott.zxing.decoding.Intents;
+import com.uniott.zxing.QRCodeSettings;
 
 public class EncodeHandler {
-	private static final String TAG = EncodeActivity.class.getSimpleName();
-	private static final String USE_VCARD_KEY = "USE_VCARD";
-	private QRCodeEncoder qrCodeEncoder;
+	private QRCodeSettings code;
 
-	private String type, data;
-	boolean useVCard = false;
-
-	int dimension = 0;
-
-	public EncodeHandler(String type, String data) {
-		this.type = type;
-		this.data = data;
-		this.useVCard = false;
-	}
-
-	public EncodeHandler(String type, String data, boolean useVCard) {
-		this(type, data);
-		this.useVCard = useVCard;
+	public EncodeHandler(QRCodeSettings code) {
+		this.code = code;
 	}
 
 	@SuppressLint("NewApi")
@@ -59,18 +44,13 @@ public class EncodeHandler {
 
 	public Bitmap encodeAsBitmap(Context context) {
 		Bitmap bitmap = null;
-		if (this.dimension <= 0) {
-			this.dimension = getDefaultSize(context);
+		int dimension = getDefaultSize(context);
+		if (this.code.getSize() <= 0) {
+			this.code.setSize(dimension);
 		}
-
-		Intent intent = new Intent(Intents.Encode.ACTION);
-		intent.putExtra(Intents.Encode.TYPE, this.type);
-		intent.putExtra(Intents.Encode.DATA, this.data);
-
+		QRCodeEncoder qrCodeEncoder = null;
 		try {
-			qrCodeEncoder = new QRCodeEncoder(context, intent, dimension, useVCard);
-			boolean useVCard = intent.getBooleanExtra(USE_VCARD_KEY, false);
-			qrCodeEncoder = new QRCodeEncoder(context, intent, this.dimension, useVCard);
+			qrCodeEncoder = new QRCodeEncoder(this.code);
 			bitmap = qrCodeEncoder.encodeAsBitmap();
 		} catch (WriterException e) {
 			e.printStackTrace();
