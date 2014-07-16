@@ -39,7 +39,7 @@ public final class QRCodeEncoder {
 
 	private static final String TAG = QRCodeEncoder.class.getSimpleName();
 
-	private static final int WHITE = 0xFFC0C0C0;
+	private static final int WHITE = 0xFFFFFFFF;
 	private static final int BLACK = 0xFF000000;
 
 	private String contents;
@@ -153,6 +153,26 @@ public final class QRCodeEncoder {
 		return values;
 	}
 
+	BitMatrix encodeAsMatrix() throws WriterException {
+		String contentsToEncode = contents;
+		if (contentsToEncode == null) {
+			return null;
+		}
+		// 校正编码
+		Map<EncodeHintType, Object> hints = qrCode.getHints();
+		if (!hints.containsKey(EncodeHintType.CHARACTER_SET)) {
+			String encoding = guessAppropriateEncoding(contentsToEncode);
+			if (encoding != null) {
+				hints.put(EncodeHintType.CHARACTER_SET, encoding);
+			} else {
+				hints.put(EncodeHintType.CHARACTER_SET, "UTF-8");
+			}
+		}
+		BitMatrix result = new MultiFormatWriter().encode(contentsToEncode, qrCode.getFormat(), qrCode.getSize(),
+				qrCode.getSize(), hints);
+		return result;
+	}
+
 	Bitmap encodeAsBitmap() throws WriterException {
 		String contentsToEncode = contents;
 		if (contentsToEncode == null) {
@@ -189,6 +209,9 @@ public final class QRCodeEncoder {
 
 		Bitmap bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
 		bitmap.setPixels(pixels, 0, width, 0, 0, width, height);
+
+		// recycle resource
+		pixels = null;
 		return bitmap;
 	}
 

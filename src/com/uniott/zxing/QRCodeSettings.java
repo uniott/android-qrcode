@@ -33,7 +33,7 @@ public class QRCodeSettings {
 		this.hints = hints;
 	}
 
-	public void addHint(EncodeHintType type, Object value) {
+	public void setHint(EncodeHintType type, Object value) {
 		if (hints == null) {
 			hints = new HashMap<>();
 		}
@@ -47,7 +47,7 @@ public class QRCodeSettings {
 		return styles;
 	}
 
-	public void addStyle(QRCodeStyle style, Object value) {
+	public void setStyle(QRCodeStyle style, Object value) {
 		if (this.styles == null) {
 			this.styles = new HashMap<>();
 		}
