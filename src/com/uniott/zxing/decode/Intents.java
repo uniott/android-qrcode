@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.uniott.zxing.decoding;
+package com.uniott.zxing.decode;
 
 /**
  * This class provides the constants to use when sending an Intent to Barcode Scanner.

@@ -19,13 +19,15 @@ package com.uniott.zxing.view;
 import java.util.Collection;
 import java.util.HashSet;
 
+import android.R.integer;
 import android.content.Context;
-import android.content.res.Resources;
+import android.content.res.TypedArray;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Rect;
+import android.graphics.drawable.BitmapDrawable;
 import android.util.AttributeSet;
 import android.view.View;
 
@@ -33,38 +35,29 @@ import com.google.zxing.ResultPoint;
 import com.uniott.zxing.R;
 import com.uniott.zxing.camera.CameraManager;
 
-/**
- * www.github.com/qiailin
- * 
- * 
- * @email qiailin@gmail
- * @author Qiailin
- * 
- */
-public final class ViewfinderView extends View {
+public class ViewfinderView extends View {
 
-	private static final int[] SCANNER_ALPHA = { 0, 64, 128, 192, 255, 192, 128, 64 };
 	private static final long ANIMATION_DELAY = 100L;
 	private static final int OPAQUE = 0xFF;
 	private static final int SPEEN_DISTANCE = 5;
-	private static final int MIDDLE_LINE_PADDING = 5;
-	private static final int MIDDLE_LINE_WIDTH = 5;
 
-	private final Paint paint;
+	private Paint paint;
 	private Bitmap resultBitmap;
-	private final int maskColor;
-	private final int resultColor;
-	private final int frameColor;
-	private final int resultPointColor;
+
+	private int frameLineWidth;// 边框的线的宽度
+	private int frameLineLength;// 边框线条的长度
+	private int maskColor;// 摄像头周围的颜色
+	private int resultColor;
+	private int frameColor;
+	private int resultPointColor;
 	private Collection<ResultPoint> possibleResultPoints;
 	private Collection<ResultPoint> lastPossibleResultPoints;
 	private boolean isFirst;
 	private int slideTop;
-	private int slideBottom;
 
 	private Bitmap qrLineBitmap;// 扫描的分割线
-	private int qrWidth;// 扫描线的长
-	private int qrHeight;// 扫描线的高
+	private int qrLineWidth;// 扫描线的长
+	private int qrLineHeight;// 扫描线的高
 	private Rect qrSrc;
 	private Rect qrDst;
 
@@ -75,18 +68,33 @@ public final class ViewfinderView extends View {
 		// Initialize these once for performance rather than calling them every
 		// time in onDraw().
 		paint = new Paint();
-		Resources resources = getResources();
-			// 这里是中间的分割线  , 直接用了微信的 分割线
-		qrLineBitmap = BitmapFactory.decodeResource(resources, R.drawable.qrcode_scan_line);
-		qrWidth = qrLineBitmap.getWidth();
-		qrHeight = qrLineBitmap.getHeight();
-		qrSrc = new Rect(0, 0, qrWidth, qrHeight);
+		// read custom styles
+		// 扫描线
+		TypedArray styles = context.obtainStyledAttributes(attrs, R.styleable.ViewFinderView);
 
-		maskColor = resources.getColor(R.color.viewfinder_mask);
-		resultColor = resources.getColor(R.color.result_view);
-		frameColor = resources.getColor(R.color.viewfinder_frame);
-		resultPointColor = resources.getColor(R.color.possible_result_points);
-		possibleResultPoints = new HashSet<ResultPoint>(5);
+		frameLineLength = styles.getInt(R.styleable.ViewFinderView_frameLineLength, 150);
+		frameLineWidth = styles.getInt(R.styleable.ViewFinderView_frameLineWidth, 12);
+
+		BitmapDrawable line = (BitmapDrawable) styles.getDrawable(R.styleable.ViewFinderView_lineDrawable);
+		if (line != null) {
+			qrLineBitmap = line.getBitmap();
+		}
+		if (qrLineBitmap == null) {
+			qrLineBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.qrcode_scan_line);
+		}
+		qrLineHeight = qrLineBitmap.getHeight();
+		qrLineWidth = qrLineBitmap.getWidth();
+		qrSrc = new Rect(0, 0, qrLineWidth, qrLineHeight);
+
+		// 颜色设置
+
+		frameColor = styles.getColor(R.styleable.ViewFinderView_frameColor, R.color.viewfinder_default_frame_color);
+		maskColor = styles.getColor(R.styleable.ViewFinderView_maskColor, R.color.viewfinder_default_mask_color);
+		resultPointColor = styles.getColor(R.styleable.ViewFinderView_resultPointColor,
+				R.color.viewfinder_default_result_points_color);
+		resultColor = styles.getColor(R.styleable.ViewFinderView_resultColor, R.color.viewfinder_default_result_color);
+
+		possibleResultPoints = new HashSet<ResultPoint>(10);
 	}
 
 	@Override
@@ -100,7 +108,6 @@ public final class ViewfinderView extends View {
 		if (!isFirst) {
 			isFirst = true;
 			slideTop = frame.top;
-			slideBottom = frame.bottom;
 		}
 
 		int width = canvas.getWidth();
@@ -125,21 +132,36 @@ public final class ViewfinderView extends View {
 				slideTop = frame.top;
 			}
 
-			qrDst = new Rect(frame.left, slideTop, frame.right, slideTop + qrHeight);
+			qrDst = new Rect(frame.left, slideTop, frame.right, slideTop + qrLineHeight);
 			canvas.drawBitmap(qrLineBitmap, qrSrc, qrDst, null);
 
-			int linewidth = 10;
 			paint.setColor(frameColor);
-
 			// draw rect
-			canvas.drawRect(15 + frame.left, 15 + frame.top, 15 + (linewidth + frame.left), 15 + (50 + frame.top), paint);
-			canvas.drawRect(15 + frame.left, 15 + frame.top, 15 + (50 + frame.left), 15 + (linewidth + frame.top), paint);
-			canvas.drawRect(-15 + ((0 - linewidth) + frame.right), 15 + frame.top, -15 + (1 + frame.right), 15 + (50 + frame.top), paint);
-			canvas.drawRect(-15 + (-50 + frame.right), 15 + frame.top, -15 + frame.right, 15 + (linewidth + frame.top), paint);
-			canvas.drawRect(15 + frame.left, -15 + (-49 + frame.bottom), 15 + (linewidth + frame.left), -15 + (1 + frame.bottom), paint);
-			canvas.drawRect(15 + frame.left, -15 + ((0 - linewidth) + frame.bottom), 15 + (50 + frame.left), -15 + (1 + frame.bottom), paint);
-			canvas.drawRect(-15 + ((0 - linewidth) + frame.right), -15 + (-49 + frame.bottom), -15 + (1 + frame.right), -15 + (1 + frame.bottom), paint);
-			canvas.drawRect(-15 + (-50 + frame.right), -15 + ((0 - linewidth) + frame.bottom), -15 + frame.right, -15 + (linewidth - (linewidth - 1) + frame.bottom), paint);
+
+			// top-left vertical-line
+			canvas.drawRect(frame.left, frame.top, frameLineWidth + frame.left, frameLineLength + frameLineWidth
+					+ frame.top, paint);
+			// top-left horizontal-line
+			canvas.drawRect(frame.left + frameLineWidth, frame.top, frameLineLength + frameLineWidth + frame.left,
+					(frameLineWidth + frame.top), paint);
+			// top-right vertical-line
+			canvas.drawRect(frame.right - frameLineWidth, frame.top, frame.right, frame.top + frameLineWidth
+					+ frameLineLength, paint);
+			// top-right horizontal-line
+			canvas.drawRect(frame.right - frameLineWidth - frameLineLength, frame.top, frame.right - frameLineWidth,
+					frameLineWidth + frame.top, paint);
+
+			// bottom-left vertical-line
+			canvas.drawRect(frame.left, frame.bottom - frameLineLength - frameLineWidth, frameLineWidth + frame.left,
+					frame.bottom, paint);
+			// bottom-left horizontal-line
+			canvas.drawRect(frameLineWidth + frame.left, frame.bottom - frameLineWidth, frame.left + frameLineLength
+					+ frameLineWidth, frame.bottom, paint);
+			// bottom-right vertical-line
+			canvas.drawRect(frame.right - frameLineWidth, frame.bottom - frameLineLength - frameLineWidth, frame.right,
+					frame.bottom, paint);
+			canvas.drawRect(frame.right - frameLineWidth - frameLineLength, frame.bottom - frameLineWidth, frame.right
+					- frameLineWidth, frame.bottom, paint);
 
 			Collection<ResultPoint> currentPossible = possibleResultPoints;
 			Collection<ResultPoint> currentLast = lastPossibleResultPoints;

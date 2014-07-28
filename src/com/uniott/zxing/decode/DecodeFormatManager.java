@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.uniott.zxing.decoding;
+package com.uniott.zxing.decode;
 
 import java.util.Arrays;
 import java.util.List;

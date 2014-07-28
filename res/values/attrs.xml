@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="ViewFinderView">
+        <attr name="lineDrawable" format="reference" />
+        <attr name="scanSpeed" format="dimension" />
+        <attr name="maskColor" format="color" />
+        <attr name="resultColor" format="color" />
+        <attr name="frameColor" format="color" />
+        <attr name="resultPointColor" format="color" />
+        <attr name="frameLineWidth" format="integer" />
+        <attr name="frameLineLength" format="integer" />
+    </declare-styleable>
+
+</resources>

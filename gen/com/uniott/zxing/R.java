@@ -9,36 +9,105 @@ package com.uniott.zxing;
 
 public final class R {
     public static final class attr {
+        /** <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static int frameColor=0x7f010004;
+        /** <p>Must be an integer value, such as "<code>100</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static int frameLineLength=0x7f010007;
+        /** <p>Must be an integer value, such as "<code>100</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static int frameLineWidth=0x7f010006;
+        /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+         */
+        public static int lineDrawable=0x7f010000;
+        /** <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static int maskColor=0x7f010002;
+        /** <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static int resultColor=0x7f010003;
+        /** <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static int resultPointColor=0x7f010005;
+        /** <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static int scanSpeed=0x7f010001;
     }
     public static final class color {
         public static int backColor=0x7f050006;
         public static int black=0x7f050004;
         public static int blue=0x7f050002;
+        /**   
+         */
         public static int defaultTextColor=0x7f050008;
         public static int detail_bgColor=0x7f050007;
         public static int green=0x7f050001;
-        public static int possible_result_points=0x7f05000b;
         public static int red=0x7f050000;
-        public static int result_view=0x7f05000c;
         public static int transparent=0x7f050005;
-        public static int viewfinder_frame=0x7f050009;
-        public static int viewfinder_mask=0x7f05000a;
+        public static int viewfinder_default_frame_color=0x7f050009;
+        public static int viewfinder_default_mask_color=0x7f05000a;
+        public static int viewfinder_default_result_color=0x7f05000c;
+        public static int viewfinder_default_result_points_color=0x7f05000b;
         public static int white=0x7f050003;
     }
     public static final class drawable {
         public static int button_details_gohome=0x7f020000;
         public static int ic_launcher=0x7f020001;
         public static int qrcode_scan_line=0x7f020002;
+        public static int qrcode_scanner_line=0x7f020003;
     }
     public static final class id {
         public static int auto_focus=0x7f060001;
-        public static int contents_text_view=0x7f060011;
+        public static int contents_text_view=0x7f060010;
         public static int decode=0x7f060002;
         public static int decode_failed=0x7f060003;
         public static int decode_succeeded=0x7f060004;
         public static int encode_failed=0x7f060005;
         public static int encode_succeeded=0x7f060006;
-        public static int image_view=0x7f060010;
+        public static int image_view=0x7f06000f;
         public static int launch_product_query=0x7f060007;
         public static int preview_view=0x7f06000d;
         public static int quit=0x7f060008;
@@ -47,7 +116,6 @@ public final class R {
         public static int search_book_contents_failed=0x7f06000b;
         public static int search_book_contents_succeeded=0x7f06000c;
         public static int selected_view=0x7f060000;
-        public static int textView1=0x7f06000f;
         public static int viewfinder_view=0x7f06000e;
     }
     public static final class layout {
@@ -98,4 +166,148 @@ public final class R {
         public static int AppTheme=0x7f080000;
         public static int title_right_button=0x7f080001;
     }
+    public static final class styleable {
+        /** Attributes that can be used with a ViewFinderView.
+           <p>Includes the following attributes:</p>
+           <table>
+           <colgroup align="left" />
+           <colgroup align="left" />
+           <tr><th>Attribute</th><th>Description</th></tr>
+           <tr><td><code>{@link #ViewFinderView_frameColor com.uniott.zxing:frameColor}</code></td><td></td></tr>
+           <tr><td><code>{@link #ViewFinderView_frameLineLength com.uniott.zxing:frameLineLength}</code></td><td></td></tr>
+           <tr><td><code>{@link #ViewFinderView_frameLineWidth com.uniott.zxing:frameLineWidth}</code></td><td></td></tr>
+           <tr><td><code>{@link #ViewFinderView_lineDrawable com.uniott.zxing:lineDrawable}</code></td><td></td></tr>
+           <tr><td><code>{@link #ViewFinderView_maskColor com.uniott.zxing:maskColor}</code></td><td></td></tr>
+           <tr><td><code>{@link #ViewFinderView_resultColor com.uniott.zxing:resultColor}</code></td><td></td></tr>
+           <tr><td><code>{@link #ViewFinderView_resultPointColor com.uniott.zxing:resultPointColor}</code></td><td></td></tr>
+           <tr><td><code>{@link #ViewFinderView_scanSpeed com.uniott.zxing:scanSpeed}</code></td><td></td></tr>
+           </table>
+           @see #ViewFinderView_frameColor
+           @see #ViewFinderView_frameLineLength
+           @see #ViewFinderView_frameLineWidth
+           @see #ViewFinderView_lineDrawable
+           @see #ViewFinderView_maskColor
+           @see #ViewFinderView_resultColor
+           @see #ViewFinderView_resultPointColor
+           @see #ViewFinderView_scanSpeed
+         */
+        public static final int[] ViewFinderView = {
+            0x7f010000, 0x7f010001, 0x7f010002, 0x7f010003,
+            0x7f010004, 0x7f010005, 0x7f010006, 0x7f010007
+        };
+        /**
+          <p>This symbol is the offset where the {@link com.uniott.zxing.R.attr#frameColor}
+          attribute's value can be found in the {@link #ViewFinderView} array.
+
+
+          <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name com.uniott.zxing:frameColor
+        */
+        public static final int ViewFinderView_frameColor = 4;
+        /**
+          <p>This symbol is the offset where the {@link com.uniott.zxing.R.attr#frameLineLength}
+          attribute's value can be found in the {@link #ViewFinderView} array.
+
+
+          <p>Must be an integer value, such as "<code>100</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name com.uniott.zxing:frameLineLength
+        */
+        public static final int ViewFinderView_frameLineLength = 7;
+        /**
+          <p>This symbol is the offset where the {@link com.uniott.zxing.R.attr#frameLineWidth}
+          attribute's value can be found in the {@link #ViewFinderView} array.
+
+
+          <p>Must be an integer value, such as "<code>100</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name com.uniott.zxing:frameLineWidth
+        */
+        public static final int ViewFinderView_frameLineWidth = 6;
+        /**
+          <p>This symbol is the offset where the {@link com.uniott.zxing.R.attr#lineDrawable}
+          attribute's value can be found in the {@link #ViewFinderView} array.
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          @attr name com.uniott.zxing:lineDrawable
+        */
+        public static final int ViewFinderView_lineDrawable = 0;
+        /**
+          <p>This symbol is the offset where the {@link com.uniott.zxing.R.attr#maskColor}
+          attribute's value can be found in the {@link #ViewFinderView} array.
+
+
+          <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name com.uniott.zxing:maskColor
+        */
+        public static final int ViewFinderView_maskColor = 2;
+        /**
+          <p>This symbol is the offset where the {@link com.uniott.zxing.R.attr#resultColor}
+          attribute's value can be found in the {@link #ViewFinderView} array.
+
+
+          <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name com.uniott.zxing:resultColor
+        */
+        public static final int ViewFinderView_resultColor = 3;
+        /**
+          <p>This symbol is the offset where the {@link com.uniott.zxing.R.attr#resultPointColor}
+          attribute's value can be found in the {@link #ViewFinderView} array.
+
+
+          <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name com.uniott.zxing:resultPointColor
+        */
+        public static final int ViewFinderView_resultPointColor = 5;
+        /**
+          <p>This symbol is the offset where the {@link com.uniott.zxing.R.attr#scanSpeed}
+          attribute's value can be found in the {@link #ViewFinderView} array.
+
+
+          <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name com.uniott.zxing:scanSpeed
+        */
+        public static final int ViewFinderView_scanSpeed = 1;
+    };
 }

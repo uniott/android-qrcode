@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.uniott.zxing.decoding;
+package com.uniott.zxing.decode;
 
 import android.app.Activity;
 import android.content.DialogInterface;
